@@ -16,14 +16,11 @@
     "serve": "node dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npm run watch",
-    "start": "prisma migrate deploy && npm run pretty && npm run copy-template && npm run serve",
+    "start": "prisma migrate deploy && npm run pretty && npm run serve",
     "watch-debug": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-sass\" \"npm run watch-ts\" \"npm run serve-debug\"",
     "watch-node": "nodemon dist/server.js",
     "watch-test": "npm run test -- --watchAll",
-    "watch-ts": "tsc -w",
-    "watch-copy-template": "nodemon --watch src/templates --ext html,json --exec \"npm run copy-template\"",
-    "copy-template": "cp -R src/templates dist",
-    "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Template,Node\" -c \"yellow.bold,magenta.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-copy-template\" \"npm run watch-node\""
+    "watch-ts": "tsc -w"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
