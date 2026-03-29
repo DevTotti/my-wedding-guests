@@ -10,10 +10,12 @@ datasource db {
 model Guest {
     id         Int       @id @default(autoincrement())
     salutation String?
+    gender     String?
     firstName  String?
     lastName   String?
     reference  String    @unique
     email      String?
+    qrCodeId   String?
     attended   Boolean   @default(false)
     attendedAt DateTime?
     createdAt  DateTime  @default(now())

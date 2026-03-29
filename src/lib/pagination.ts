@@ -17,7 +17,7 @@ export default function paginate(
           take: pageSizeToUse,
           ...conditions,
           orderBy: {
-            updated_at: "desc",
+            updatedAt: "desc",
           },
         })) || [];
       const numberOfRecords = data.length

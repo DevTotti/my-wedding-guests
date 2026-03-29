@@ -7,9 +7,8 @@ import DBError from "./utils/database";
 import session from "express-session";
 import cors from "cors";
 import "./config";
-// import adminRouter from "./components/admin/routes";
-// import authenticationRouter from "./components/authentication/routes";
-// import rentalRouter from "./components/rentals/routes";
+import adminRouter from "./components/admin/admin.routes";
+import guestRouter from "./components/guest/guest.routes";
 
 // Create Express server
 const app = express();
@@ -38,9 +37,8 @@ app.get("/health", (_req, res) =>
     .send({ success: true, message: "Health check 200" }),
 );
 
-// app.use("/misc", miscRouter);
-// app.use("/drop", dropRouter);
-// app.use("/admin", adminRouter);
+app.use("/guest", guestRouter);
+app.use("/admin", adminRouter);
 
 app.all("*", (req, res) => {
   return res.status(httpStatusCodes.NOT_FOUND).json({

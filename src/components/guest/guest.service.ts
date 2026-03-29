@@ -19,12 +19,16 @@ class GuestService {
     return await prisma.guest.findUnique({ where: { id } });
   }
 
+  async getGuestByReference(reference: string) {
+    return await prisma.guest.findUnique({ where: { reference } });
+  }
+
   async createGuest(data: any) {
     const reference = await this.findUniqueReference();
     data.reference = reference;
-    await prisma.guest.create({ data });
     const pageUrl = `${Config.CLIENT_URL}/checkin/${reference}`;
-    return await helper.generateQrCode(pageUrl);
+    data.qrCodeId = await helper.generateQrCode(pageUrl);
+    return await prisma.guest.create({ data });
   }
 
   async updateGuest(id: number, data: any) {
