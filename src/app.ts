@@ -9,6 +9,7 @@ import cors from "cors";
 import "./config";
 import adminRouter from "./components/admin/admin.routes";
 import guestRouter from "./components/guest/guest.routes";
+import miscRouter from "./components/misc/misc.api";
 
 // Create Express server
 const app = express();
@@ -39,6 +40,7 @@ app.get("/health", (_req, res) =>
 
 app.use("/guest", guestRouter);
 app.use("/admin", adminRouter);
+app.use("/misc", miscRouter);
 
 app.all("*", (req, res) => {
   return res.status(httpStatusCodes.NOT_FOUND).json({

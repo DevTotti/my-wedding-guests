@@ -41,3 +41,13 @@ model SecurityPin {
 
     @@map("security_pins")
 }
+
+model HealthCheck {
+    id         Int      @id @default(autoincrement())
+    created_at DateTime @default(now()) @db.Timestamptz(6)
+    updated_at DateTime @default(now()) @db.Timestamptz(6)
+    status     String   @default("healthy")
+    details    String?
+
+    @@map("health")
+}
